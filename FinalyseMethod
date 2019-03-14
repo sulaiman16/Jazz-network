@@ -1,1 +1,6 @@
 
+What sorts of thing might you put in a finalize method?
+
+It is used to perform certain closing operation  .  The Finalise method is used to perform cleanup operations on unmanaged resources held by the current object before the object is destroyed.
+Until finalise is called it does not release the resources.  We can set the method protected therefore it can be accessible only through this class or through the derived class.  We will specify the actions that must be performed before the object is destroyed. 
+For example we can also use finalise method to make sure the open file owned by that object is closed  or the database connection  and  the inputstream the HTTP.
