@@ -34,12 +34,18 @@ public class DoubleLinkedList {
 	
 	public void remove(Element toRemove) {
 		Element previous = toRemove.getPrevious();
-		Element next = toRemove.next;
+		Element next = toRemove.getNext();
 		if (previous != null) {
 			previous.setNext(next);
 		}
 		if (next != null) {
 			next.setPrevious(previous);
+		}
+		if (toRemove.equals(first)) {
+			first = next;
+		}
+		if (toRemove.equals(last)) {
+			last = previous;
 		}
 	}
 	
@@ -94,14 +100,15 @@ public class DoubleLinkedList {
 		DoubleLinkedList list = new DoubleLinkedList();
 		
 		Element fifthElement = list.insertFirst(5);
-		list.insertFirst(4);
-		list.insertFirst(3);
-		list.insertFirst(2);
-		list.insertFirst(1);
+		Element fourthElement = list.insertFirst(4);
+		Element thirdElement = list.insertFirst(3);
+		Element secondElement = list.insertFirst(2);
+		Element firstElement = list.insertFirst(1);
 		
-		list.insertLast(6);
-		list.insertLast(7);
-    	list.insertLast(9);
+		Element sixthElement = list.insertLast(6);
+		Element seventhElement = list.insertLast(7);
+		Element eighthElement = list.insertLast(8);
+		Element ninethElement = list.insertLast(9);
 		
 		Element element;
 		while ((element = list.next()) != null) {
@@ -109,11 +116,36 @@ public class DoubleLinkedList {
 		}
 		
 		list.remove(fifthElement);
-		System.out.println("REMOVE");
+		System.out.println("REMOVE 5");
 		list.reset();
 		while ((element = list.next()) != null) {
 			System.out.println(element.getValue());
 		}
 		
+		list.remove(firstElement);
+		System.out.println("REMOVE 1");
+		list.reset();
+		while ((element = list.next()) != null) {
+			System.out.println(element.getValue());
+		}
+		
+		list.remove(ninethElement);
+		System.out.println("REMOVE 9");
+		list.reset();
+		while ((element = list.next()) != null) {
+			System.out.println(element.getValue());
+		}
+		
+		list.remove(secondElement);		
+		list.remove(thirdElement);
+		list.remove(fourthElement);
+		list.remove(sixthElement);
+		list.remove(seventhElement);
+		list.remove(eighthElement);
+		System.out.println("REMOVE ALL");
+		list.reset();
+		while ((element = list.next()) != null) {
+			System.out.println(element.getValue());
+		}
 	}
 }
